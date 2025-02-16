@@ -1,27 +1,22 @@
 import styled from "styled-components";
 import { P } from "./Typography";
 
-// Definizione delle varianti di stato disponibili
 type StatusVariant = "alive" | "dead" | "unknown";
 
-// Interfaccia per le props del componente
 interface StatusPillProps {
   variant: StatusVariant;
 }
 
-// Interfaccia per la configurazione delle varianti
 interface StatusVariantConfig {
   background: string;
   color: string;
   text: string;
 }
 
-// Type per l'oggetto delle configurazioni
 type StatusVariantConfigs = {
   [K in StatusVariant]: StatusVariantConfig;
 };
 
-// Configurazioni delle varianti
 const STATUS_VARIANTS: StatusVariantConfigs = {
   alive: {
     background: "#EDFBD8",
