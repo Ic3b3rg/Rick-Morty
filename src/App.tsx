@@ -2,8 +2,6 @@ import "./App.css";
 import { CharacterCard } from "./components/ui/Card";
 import { Container, Grid, GridItem } from "./components/ui/Grid";
 import Header from "./components/ui/Header";
-import StatusPill from "./components/ui/Pills";
-import { H1, P } from "./components/ui/Typography";
 const mock = {
   id: 1,
   name: "Rick Sanchez",
@@ -31,12 +29,6 @@ function App() {
   return (
     <>
       <Header />
-      <H1>Aa</H1>
-      <P>Aa</P>
-      <StatusPill variant="alive" />
-      <StatusPill variant="dead" />
-      <StatusPill variant="unknown" />
-
       <Container>
         <Grid>
           <GridItem span={4}>

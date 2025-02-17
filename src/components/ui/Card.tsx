@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { H1, P } from "./Typography";
 import StatusPill, { StatusVariant } from "./Pills";
+import { H2, P } from "./Typography";
 
 const CardContainer = styled.div`
   width: 100%;
   border-radius: 8px;
   box-shadow: var(--shadow-2);
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--white);
 `;
 
 const CardImage = styled.img`
@@ -62,11 +62,13 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
       <CardImage src={character.image} alt={character.name} />
 
       <CardContent>
-        <H1>{character.name}</H1>
+        <H2>{character.name}</H2>
         <P>
           {character.species} - {character.gender}
         </P>
-        <StatusPill variant={character.status.toLowerCase() as StatusVariant} />
+        <StatusPill
+          $variant={character.status.toLowerCase() as StatusVariant}
+        />
         <P>
           {character.name} origin is {character.origin.name} and the last known
           location was {character.location.name}. He was first seen in episode{" "}

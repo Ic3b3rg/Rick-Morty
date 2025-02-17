@@ -1,21 +1,21 @@
 import styled from "styled-components";
 import Logo from "../../assets/logo.svg";
+import { SearchFilterBar } from "./Filters";
 
 const Header = () => {
   return (
-    <HeaderContainer>
-      <RickMortyLogo />
-      <PageCounter>Page 1 of 30</PageCounter>
-      <IconContainer>
-        <span>⚙️</span>
-      </IconContainer>
-
+    <Wrapper>
+      <HeaderContainer>
+        <RickMortyLogo />
+        <PageCounter>Page 1 of 30</PageCounter>
+        <IconContainer>
+          <span>⚙️</span>
+        </IconContainer>
+      </HeaderContainer>
       <FilterContainer>
-        <FilterInput>
-          <input type="text" placeholder="Filter items..." />
-        </FilterInput>
+        <SearchFilterBar />
       </FilterContainer>
-    </HeaderContainer>
+    </Wrapper>
   );
 };
 const RickMortyLogo = () => (
@@ -30,12 +30,12 @@ const HeaderContainer = styled.header`
   right: 0;
   z-index: 100;
   height: 80px;
-  background-color: #ffffff;
+  background-color: var(--white);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 24px 32px 24px;
 `;
 
 const PageCounter = styled.div`
@@ -56,43 +56,14 @@ const IconContainer = styled.div`
 
 const FilterContainer = styled.div`
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(50%);
-  bottom: 0;
-  width: 300px;
-  z-index: 101;
-`;
-
-const FilterInput = styled.div`
-  position: relative;
+  top: calc(50% + 30px);
   width: 100%;
-
-  input {
-    width: 100%;
-    padding: 12px 40px 12px 16px;
-    border-radius: 8px;
-    border: 1px solid #e1e1e1;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    font-size: 14px;
-
-    &::placeholder {
-      color: #999;
-    }
-
-    &:focus {
-      outline: none;
-      border-color: #007aff;
-    }
-  }
-
-  svg {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #666;
-  }
+  z-index: 101;
+  height: 100%;
+`;
+const Wrapper = styled.div`
+  position: relative;
+  margin-bottom: 80px;
 `;
 
 export default Header;
