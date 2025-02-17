@@ -49,3 +49,6 @@
 
   --shadow-4: 0px 18px 88px -4px #18274b1f, 0px 8px 28px -6px #18274b1a;
 }
+#root {
+  background: linear-gradient(0deg, #e0f8fc 0%, #c6e4e6 100%);
+}

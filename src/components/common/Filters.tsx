@@ -1,8 +1,8 @@
-import { useRickMortyApi } from "../..//api/useRickApi";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useRickMortyApi } from "../../api/useRickApi";
+import FilterIcon from "../../assets/icons/filter.svg";
 import { useUrlParams } from "../../hooks/useUrlParams";
-import Filter from "../../assets/icons/filter.svg";
 
 export const SearchFilterBar: React.FC = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -15,35 +15,27 @@ export const SearchFilterBar: React.FC = () => {
   const resetPageParam = () => {
     setPage(1);
   };
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    resetPageParam();
+    fetchData();
+  };
   return (
     <SearchBarContainer>
       <FilterInput>
-        <input
-          placeholder="Search a character"
-          onChange={(e) => {
-            setName(e.target.value);
-            resetPageParam();
-            fetchData();
-          }}
-        />
-
+        <input placeholder="Search a character" onChange={onChange} />
         <FilterButton onClick={toggleFilters}>
           {isFilterOpen ? (
             <> FILTERS X</>
           ) : (
             <>
               FILTERS
-              <Filter />
+              <FilterIcon />
             </>
           )}
         </FilterButton>
       </FilterInput>
-
-      <FilterPanel $isOpen={isFilterOpen}>
-        {/* Qui inserisci i contenuti dei tuoi filtri */}
-        <p>Qui i filtri</p>
-        <p>Ad esempio: Status, Gender, Species, ecc.</p>
-      </FilterPanel>
     </SearchBarContainer>
   );
 };
@@ -53,7 +45,7 @@ const SearchBarContainer = styled.div`
   margin: 0 auto;
   height: 100%;
 `;
-export const FilterInput = styled.div`
+const FilterInput = styled.div`
   position: relative;
   width: 100%;
   z-index: 10;
@@ -73,31 +65,12 @@ export const FilterInput = styled.div`
     &::placeholder {
       color: var(--tertiary-300);
       font-size: 30px;
+      font-family: "Playfair Display";
     }
     &:focus {
       outline: none;
     }
   }
-`;
-
-interface FilterPanelProps {
-  $isOpen: boolean;
-}
-
-export const FilterPanel = styled.div<FilterPanelProps>`
-  position: relative;
-  top: -25%;
-  background-color: var(--tertiary-50);
-  border-radius: 8px;
-  overflow: hidden;
-  transition:
-    max-height 0.3s ease,
-    padding 0.3s ease;
-  max-height: ${({ $isOpen }) => ($isOpen ? "200px" : "0")};
-  padding: ${({ $isOpen }) => ($isOpen ? "40px 16px 16px 16px" : "0 16px")};
-  width: 100%;
-  box-sizing: border-box;
-  box-shadow: var(--shadow-2);
 `;
 
 const FilterButton = styled.button`

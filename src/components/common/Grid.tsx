@@ -60,7 +60,6 @@ const Container = styled.div`
   padding: 0 ${gridConfig.mobile.margin};
   max-width: 100%;
   box-sizing: border-box;
-
   @media (min-width: ${breakpoints.tabletPortrait}) {
     padding: 0 ${gridConfig.tabletPortrait.margin};
     max-width: ${gridConfig.tabletPortrait.minWidth};

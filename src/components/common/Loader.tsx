@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import Portal from "../../assets/portal.png";
+import Portal from "../../assets/images/portal.png";
 
 export const Loader = () => {
   return (

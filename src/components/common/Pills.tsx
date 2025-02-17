@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { P } from "./Typography";
 
-type StatusVariant = "alive" | "dead" | "unknown";
+export type StatusVariant = "alive" | "dead" | "unknown";
 
 interface StatusPillProps {
   $variant: StatusVariant;
@@ -58,4 +58,3 @@ const PillText = styled(P)`
   font-weight: 700;
 `;
 export default StatusPill;
-export type { StatusPillProps, StatusVariant };

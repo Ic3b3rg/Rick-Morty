@@ -1,6 +1,6 @@
 import { Character } from "@/types/rick-api";
-import { Grid, GridItem } from "../ui/Grid";
-import { CharacterCard } from "../ui/Card";
+import { Grid, GridItem } from "../common/Grid";
+import { CharacterCard } from "../common/Card";
 
 interface CharacterListProps {
   characters: Character[];

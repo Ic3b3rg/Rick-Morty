@@ -55,8 +55,8 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
           <Strong>{character.name}</Strong> origin is{" "}
           <Strong>{character.origin.name}</Strong> and the last known location
           was <Strong>{character.location.name}</Strong>. He was first seen in
-          episode <Strong>{firstEpisode}</Strong>
-          and last seen in episode <Strong>{lastEpisode}</Strong>.
+          episode <Strong>{firstEpisode}</Strong> and last seen in episode{" "}
+          <Strong>{lastEpisode}</Strong>.
         </Description>
       </CardContent>
     </CardContainer>

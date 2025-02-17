@@ -46,7 +46,6 @@ export function useUrlParams<T extends string | boolean | number>(
     [paramName, getParamValue],
   );
 
-  // Aggiorna il valore locale se l'utente usa i pulsanti "indietro" o "avanti"
   useEffect(() => {
     const handlePopState = () => {
       setParam(getParamValue());
@@ -57,50 +56,4 @@ export function useUrlParams<T extends string | boolean | number>(
   }, [getParamValue]);
 
   return { urlParam: param, setUrlParam: updateParam };
-}
-
-export function useUrlSearchParams() {
-  const getSearchParams = useCallback(
-    () => new URLSearchParams(window.location.search),
-    [],
-  );
-  const [searchParams, setSearchParams] = useState(getSearchParams());
-
-  useEffect(() => {
-    // Salva le funzioni originali
-    const originalPushState = window.history.pushState;
-    const originalReplaceState = window.history.replaceState;
-
-    // Funzione per dispatchare un evento personalizzato "locationchange"
-    const triggerLocationChange = () => {
-      window.dispatchEvent(new Event("locationchange"));
-    };
-
-    window.history.pushState = function (...args) {
-      originalPushState.apply(window.history, args);
-      triggerLocationChange();
-    };
-
-    // Patch replaceState
-    window.history.replaceState = function (...args) {
-      originalReplaceState.apply(window.history, args);
-      triggerLocationChange();
-    };
-
-    const handleLocationChange = () => {
-      setSearchParams(getSearchParams());
-    };
-
-    window.addEventListener("popstate", handleLocationChange);
-    window.addEventListener("locationchange", handleLocationChange);
-
-    return () => {
-      window.removeEventListener("popstate", handleLocationChange);
-      window.removeEventListener("locationchange", handleLocationChange);
-      window.history.pushState = originalPushState;
-      window.history.replaceState = originalReplaceState;
-    };
-  }, [getSearchParams]);
-
-  return searchParams;
 }
