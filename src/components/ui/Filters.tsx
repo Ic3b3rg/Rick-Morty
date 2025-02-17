@@ -2,6 +2,8 @@ import { useRickMortyApi } from "../..//api/useRickApi";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useUrlParams } from "../../hooks/useUrlParams";
+import Filter from "../../assets/icons/filter.svg";
+
 export const SearchFilterBar: React.FC = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { fetchData } = useRickMortyApi();
@@ -26,7 +28,14 @@ export const SearchFilterBar: React.FC = () => {
         />
 
         <FilterButton onClick={toggleFilters}>
-          {isFilterOpen ? "FILTERS X" : "FILTERS"}
+          {isFilterOpen ? (
+            <> FILTERS X</>
+          ) : (
+            <>
+              FILTERS
+              <Filter />
+            </>
+          )}
         </FilterButton>
       </FilterInput>
 
@@ -91,16 +100,18 @@ export const FilterPanel = styled.div<FilterPanelProps>`
   box-shadow: var(--shadow-2);
 `;
 
-/* Pulsante "FILTERS" mock */
 const FilterButton = styled.button`
   position: absolute;
-  right: 16px;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   font-size: 20px;
   font-weight: 700;
+  display: flex;
+  gap: 8px;
+  align-items: center;
   color: var(--tertiary-600);
   text-transform: uppercase;
   cursor: pointer;

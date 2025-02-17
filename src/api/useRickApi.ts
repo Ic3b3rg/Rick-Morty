@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 export const useRickMortyApi = () => {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<Error | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [isLoading, setLoading] = useState<boolean>(true);
   const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -29,5 +29,5 @@ export const useRickMortyApi = () => {
     fetchData();
   }, [fetchData]);
 
-  return { data, error, loading, fetchData: get };
+  return { data, error, isLoading, fetchData: get };
 };
