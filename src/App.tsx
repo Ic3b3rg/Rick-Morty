@@ -9,12 +9,15 @@ import { useUrlSearchParams } from "./hooks/useUrlParams";
 function App() {
   const { data, error, isLoading, fetchData } = useRickMortyApi();
   const searchParams = useUrlSearchParams();
+  const page = searchParams.get("page") || 1;
+
   useEffect(() => {
     fetchData();
   }, [fetchData, searchParams]);
+
   return (
     <>
-      <Header />
+      <Header currentPage={Number(page)} totalPages={data?.info.pages || 0} />
       <Container>
         <Grid>
           {data?.results.map((character) => (

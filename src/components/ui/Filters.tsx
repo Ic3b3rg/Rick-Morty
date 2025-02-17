@@ -5,18 +5,22 @@ import { useUrlParams } from "../../hooks/useUrlParams";
 export const SearchFilterBar: React.FC = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { fetchData } = useRickMortyApi();
-  const { setUrlParam } = useUrlParams<string>("name");
+  const { setUrlParam: setName } = useUrlParams<string>("name");
+  const { setUrlParam: setPage } = useUrlParams<number>("page");
   const toggleFilters = () => {
     setIsFilterOpen((prev) => !prev);
   };
-
+  const resetPageParam = () => {
+    setPage(1);
+  };
   return (
     <SearchBarContainer>
       <FilterInput>
         <input
           placeholder="Search a character"
           onChange={(e) => {
-            setUrlParam(e.target.value);
+            setName(e.target.value);
+            resetPageParam();
             fetchData();
           }}
         />

@@ -1,13 +1,35 @@
 import styled from "styled-components";
 import Logo from "../../assets/logo.svg";
 import { SearchFilterBar } from "./Filters";
+import { Pagination } from "../features/Pagination";
+import { useUrlParams } from "../../hooks/useUrlParams";
+interface HeaderProps {
+  currentPage: number;
+  totalPages: number;
+}
+const Header = ({ totalPages, currentPage }: HeaderProps) => {
+  const { setUrlParam: setCurrentPage } = useUrlParams<number>("page", 1);
 
-const Header = () => {
+  // console.log("currentPage)", currentPage);
+
+  const prevPage = () => {
+    if (currentPage && currentPage <= 1) return;
+    setCurrentPage((currentPage as number) - 1);
+  };
+  const nextPage = () => {
+    if (currentPage === totalPages) return;
+    setCurrentPage((currentPage as number) + 1);
+  };
   return (
     <Wrapper>
       <HeaderContainer>
         <RickMortyLogo />
-        <PageCounter>Page 1 of 30</PageCounter>
+        <Pagination
+          currentPage={currentPage as number}
+          totalPages={totalPages}
+          onPrev={prevPage}
+          onNext={nextPage}
+        />
         <IconContainer>
           <span>⚙️</span>
         </IconContainer>
@@ -38,10 +60,6 @@ const HeaderContainer = styled.header`
   padding: 0 24px 32px 24px;
 `;
 
-const PageCounter = styled.div`
-  font-size: 16px;
-  color: #666;
-`;
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
