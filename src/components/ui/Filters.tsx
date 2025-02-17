@@ -1,10 +1,11 @@
-import useUrlParams from "../../hooks/useUrlParams";
+import { useRickMortyApi } from "../..//api/useRickApi";
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import { useUrlParams } from "../../hooks/useUrlParams";
 export const SearchFilterBar: React.FC = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const { setUrlParam } = useUrlParams<string>("search");
+  const { fetchData } = useRickMortyApi();
+  const { setUrlParam } = useUrlParams<string>("name");
   const toggleFilters = () => {
     setIsFilterOpen((prev) => !prev);
   };
@@ -14,7 +15,10 @@ export const SearchFilterBar: React.FC = () => {
       <FilterInput>
         <input
           placeholder="Search a character"
-          onChange={(e) => setUrlParam(e.target.value)}
+          onChange={(e) => {
+            setUrlParam(e.target.value);
+            fetchData();
+          }}
         />
 
         <FilterButton onClick={toggleFilters}>
