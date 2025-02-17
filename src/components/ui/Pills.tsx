@@ -51,6 +51,7 @@ const PillContainer = styled.span<StatusPillProps>`
   background-color: ${(props) => STATUS_VARIANTS[props.$variant].background};
   color: ${(props) => STATUS_VARIANTS[props.$variant].color};
   text-transform: uppercase;
+  margin: 16px 0;
 `;
 
 const PillText = styled(P)`

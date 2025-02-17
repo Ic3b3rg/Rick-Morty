@@ -3,24 +3,6 @@ import styled from "styled-components";
 import StatusPill, { StatusVariant } from "./Pills";
 import { H2, P } from "./Typography";
 
-const CardContainer = styled.div`
-  width: 100%;
-  border-radius: 8px;
-  box-shadow: var(--shadow-2);
-  overflow: hidden;
-  background-color: var(--white);
-`;
-
-const CardImage = styled.img`
-  width: 100%;
-  height: auto;
-  display: block;
-`;
-
-const CardContent = styled.div`
-  padding: 16px;
-`;
-
 interface Character {
   id: number;
   name: string;
@@ -62,20 +44,61 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
       <CardImage src={character.image} alt={character.name} />
 
       <CardContent>
-        <H2>{character.name}</H2>
-        <P>
+        <Title>{character.name}</Title>
+        <SubTitle>
           {character.species} - {character.gender}
-        </P>
+        </SubTitle>
         <StatusPill
           $variant={character.status.toLowerCase() as StatusVariant}
         />
-        <P>
-          {character.name} origin is {character.origin.name} and the last known
-          location was {character.location.name}. He was first seen in episode{" "}
-          {firstEpisode}
-          and last seen in episode {lastEpisode}.
-        </P>
+        <Description>
+          <Strong>{character.name}</Strong> origin is{" "}
+          <Strong>{character.origin.name}</Strong> and the last known location
+          was <Strong>{character.location.name}</Strong>. He was first seen in
+          episode <Strong>{firstEpisode}</Strong>
+          and last seen in episode <Strong>{lastEpisode}</Strong>.
+        </Description>
       </CardContent>
     </CardContainer>
   );
 };
+
+const CardContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  background-color: var(--white);
+`;
+
+const CardImage = styled.img`
+  width: 100%;
+  height: auto;
+  display: block;
+`;
+
+const CardContent = styled.div`
+  padding: 16px;
+`;
+
+const Title = styled(H2)`
+  color: var(--tertiary-600);
+  font-size: 29px;
+`;
+
+const SubTitle = styled(P)`
+  color: var(--tertiary-400);
+  font-size: 16px;
+  font-weight: 700;
+`;
+
+const Description = styled(P)`
+  font-size: 14px;
+  font-weight: 400;
+`;
+
+const Strong = styled.strong`
+  font-weight: 700;
+  font-size: 14px;
+`;

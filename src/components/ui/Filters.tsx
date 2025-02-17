@@ -44,6 +44,7 @@ export const FilterInput = styled.div`
   position: relative;
   width: 100%;
   z-index: 10;
+  font-family: "Playfair Display";
   input {
     width: 100%;
     padding: 12px 40px 12px 16px;
